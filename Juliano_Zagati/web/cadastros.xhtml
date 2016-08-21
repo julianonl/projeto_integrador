@@ -17,66 +17,24 @@
                 <ui:define name="centro">
 
                     <h2>
-                        Cadastro de Participantes
+                        Selecione o Cadastro
                     </h2><br/>
 
-                    <h:form id="cad">
-                        <h:panelGrid columns="3">
-                            <h:outputLabel for="nome" value="Nome"/>
-                            <h:inputText id="nome" value="#{controleParticipante.participante.nome}" size="30" required="true"/>
-                            <p:message for="nome" display="text" />
+                </ui:define>
+                <ui:define name="menu">
 
-                            <h:outputLabel for="cpf" value="CPF"/>
-
-                            <h:inputText id="cpf"  value="#{controleParticipante.participante.cpf}" size="30" required="true"/>
-                            <p:message for="cpf" display="text" />
-
-                            <h:outputLabel for="email" value="e-mail"/>
-                            <h:inputText id="email" size="30" value="#{controleParticipante.participante.email}"/>
-                            <p:message for="email" display="text" />
-
-                            <h:outputLabel for="fone" value="Fone"/>
-                            <h:inputText id="fone" size="30" value="#{controleParticipante.participante.telefone}" required="true"/>
-                            <p:message for="fone" display="text" />
-
-                            <h:outputLabel for="endereco" value="Endereço"/>
-                            <h:inputText id="endereco" size="30" required="true" value="#{controleParticipante.participante.endereco}"/>
-                            <p:message for="endereco" display="text" />
-
-                            <h:outputLabel for="cidade" value="Cidade"/>
-                            <h:selectOneMenu id="cidade"
-                                             value="#{controleParticipante.participante.cidade}"
-                                             converter="conversorEntidade">
-                                <f:selectItems value="#{controleParticipante.getCidade()}"/>
-                            </h:selectOneMenu>
-                            <!--<h:inputHidden value="{controleParticipante.participante.id}"/>-->
-
-
-
-                            <h:outputLabel for="formacao" value="Formação"/>
-                            <h:selectOneMenu id="formacao"
-                                             value="#{controleParticipante.participante.formacao}"
-                                             converter="conversorEntidade">
-                                <f:selectItems  itemLabel="Selecione o char" value="#{controleParticipante.getFormacao()}"/>
-                            </h:selectOneMenu>
-                            <!--<h:inputHidden value="{controleParticipante.participante.id}"/>-->
-
-
-                            <h:outputLabel for="matricula" value="Matricula"/>
-                            <h:inputText id="matricula"  size="30" required="false" value="#{controleParticipante.participante.matricula}"/>
-                            <p:message for="matricula" display="text" />
-
-                            <h:commandButton action="#{controleParticipante.salvar()}" value="Salvar" ></h:commandButton>
-                            <h:commandButton actionListener="listaParticipantes.xhtml" value="listar" ></h:commandButton>
-                        </h:panelGrid>
-
-                    </h:form>
-
+                    <p:menu style="width: 200px">
+                        <p:submenu label="Cadastros">
+                            <p:menuitem value="Participante" icon="ui-icon-person" url="cadastroParticipante.xhtml"/>
+                            <p:menuitem value="Palestrante" icon="ui-icon-contact" url="cadastroPalestrante.xhtml.xhtml"/>
+                            <p:menuitem value="Avaliador" icon="ui-icon-bookmark" url="cadastroAvaliador.xhtml.xhtml"/>
+                        </p:submenu>
+                    </p:menu>
 
                 </ui:define>
 
                 <ui:define name="rodape">
-                    Cadastro de Participante
+                    Cadastros
                 </ui:define>
             </ui:composition>
 

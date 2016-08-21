@@ -16,6 +16,7 @@
                 <header>
 
                 </header>
+
                 <section>
 
                     <div align="center">
@@ -30,11 +31,13 @@
                                 <h:form>
                                     <p:menu style="width: 200px">
                                         <p:submenu label="Menu">
-                                            <p:menuitem value="Home" icon="ui-icon-home" url="index.xhtml" />
                                             <p:menuitem value="Login" icon="ui-icon-key" url="../usuario/areaUsuario.xhtml"/>
                                             <p:menuitem value="Cadastro" icon="ui-icon-contact" url="cadastros.xhtml"/>
                                             <p:menuitem value="Eventos" icon="ui-icon-bookmark" url="eventos.xhtml"/>
-                                            <p:menuitem value="ADM" icon="ui-icon-key" url="../administrador/paginaAdministrador.xhtml"/>
+                                            <p:menuitem value="Home" icon="ui-icon-home" url="index.xhtml" />
+                                            <p:menuitem value="Participantes" icon="ui-icon-person" url="../administrador/listaParticipantes.xhtml" />
+                                            <p:menuitem value="Palestrantes" icon="ui-icon-person" url="listaParticipantes.xhtml" />
+                                            <p:menuitem value="Avaliador" icon="ui-icon-person" url="listaParticipantes.xhtml" />
                                         </p:submenu>
                                     </p:menu>
                                     <p:growl id="messages" showDetail="true"/>
@@ -50,10 +53,20 @@
                             <ui:insert name="centro">
 
 
+                                <!--                                <h:form id="login" onsubmit="document.getElementById('login').action = 'j_security_check';" prependId="false">
+                                                                    <h:panelGrid columns="2">
+                                                                        <p:outputLabel for="j_username" value="Username" />
+                                                                        <p:inputText id="j_username"  />            
+                                                                        <p:outputLabel for="j_password" value="Password" />
+                                                                        <p:password id="j_password" />
+                                                                        <p:commandButton id="submit" value="Login" ajax="false"/>
+                                                                    </h:panelGrid>
+                                                                </h:form>-->
                             </ui:insert>
                         </p:layoutUnit> 
                     </div>
                 </aside>
+
 
                 <footer>
                     <div align="center">

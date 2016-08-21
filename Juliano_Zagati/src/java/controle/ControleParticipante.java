@@ -51,7 +51,7 @@ public class ControleParticipante {
     public String salvar() {
 
         daoGener.inserir(participante);
-        return "listaParticipantes";
+        return "cadastros";
     }
 
     public String acaoAlterar(ParticipanteZ participante) {

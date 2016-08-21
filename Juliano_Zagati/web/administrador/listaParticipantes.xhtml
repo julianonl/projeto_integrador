@@ -9,15 +9,13 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="index.xhtml">
+        <ui:composition template="modelo.xhtml">
 
             <ui:define name="centro">
 
-
-
                 <h:form id="form" >
                     <p:messages />
-                    <p:dataTable tableStyle="font-size: 8px" id="tabela" value="#{controleParticipante.lista}" var="cli" emptyMessage="Nenhum registro incluido." paginator="true" rows="5">
+                    <p:dataTable tableStyle="font-size: 8px" id="tabela" value="#{controleParticipante.lista}" var="cli" paginator="true" rows="5">
                         <f:facet name="header">  
                             Lista de Participantes  
                         </f:facet>
@@ -66,22 +64,11 @@
                     </p:dataTable>
 
                 </h:form>   
-                <!-- Abaixo temos um modal de confirmação de exclusão repare que ele é fora do form principal, pois se colocarmos dentro podemos ter alguns problemas com isso.-->
-                <h:form id="dlg">
-                    <p:confirmDialog message="Deseja realmente excluir este registro?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation">
-                        <!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
-                        <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" actionListener="#{clienteBean.excluir}" process="@form" update="dlg:btnSim" />
-                        <!--caso seja não somente fecha o modal-->
-                        <p:commandButton id="btnNao" value="Não" onclick="confirmation.hide();" type="button"/>
-                    </p:confirmDialog>
-                </h:form>
-
+              
 
             </ui:define>
 
-            <ui:define name="rodape">
-                Cadastro de Participante
-            </ui:define>
+
 
         </ui:composition>
 
