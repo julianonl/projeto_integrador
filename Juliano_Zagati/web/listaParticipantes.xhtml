@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="index.xhtml">
+
+            <ui:define name="centro">
+
+
+
+                <h:form id="form" >
+                    <p:messages />
+                    <p:dataTable tableStyle="font-size: 8px" id="tabela" value="#{controleParticipante.lista}" var="cli" emptyMessage="Nenhum registro incluido." paginator="true" rows="5">
+                        <f:facet name="header">  
+                            Lista de Participantes  
+                        </f:facet>
+                        <p:column headerText="NOME" style="text-align: center">
+                            <h:outputText value="#{cli.nome}" />
+                        </p:column>
+                        <p:column headerText="CPF" style="text-align: center">
+                            <h:outputText value="#{cli.cpf}" />
+                        </p:column>
+
+                        <p:column headerText="e-mail" style="text-align: center">
+                            <h:outputText value="#{cli.email}" />
+                        </p:column>
+
+                        <p:column headerText="TELEFONE" style="text-align: center">
+                            <h:outputText value="#{cli.telefone}" />
+                        </p:column>
+
+                        <p:column headerText="ENDEREÇO" style="text-align: center">
+                            <h:outputText value="#{cli.endereco}" />
+                        </p:column>
+
+                        <p:column headerText="CIDADE" style="text-align: center">
+                            <h:outputText value="#{cli.cidade.nome}" />
+                        </p:column>
+                        <p:column headerText="ESTADO" style="text-align: center">
+                            <h:outputText value="#{cli.cidade.estado.nome} - #{cli.cidade.estado.sigla}" />
+                        </p:column>
+
+                        <p:column headerText="FORMAÇÃO" style="text-align: center">
+                            <h:outputText value="#{cli.formacao.formacao}" />
+                        </p:column>
+
+                        <p:column headerText="MATRICULA" style="text-align: center">
+                            <h:outputText value="#{cli.matricula}" />
+                        </p:column>
+
+                        <p:column headerText="ALTERAR - EXCLUIR" style="text-align: center">
+                            <p:commandButton action="#{controleParticipante.acaoAlterar(cli)}" value="EDITAR" title="Editar" ajax="false" style="width: 60px"  >
+                                <f:setPropertyActionListener id="moveDown" value="#{cli}" target="#{controleParticipante.participante.nome}" />
+                            </p:commandButton>
+                            <p:commandButton value="EXCLUIR" title="Excluir" onclick="confirmation.show()" style="width: 60px">
+                                <f:setPropertyActionListener value="#{cli}" target="#{controleParticipante.excluirParticipante(cli.id)}" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>   
+                <!-- Abaixo temos um modal de confirmação de exclusão repare que ele é fora do form principal, pois se colocarmos dentro podemos ter alguns problemas com isso.-->
+                <h:form id="dlg">
+                    <p:confirmDialog message="Deseja realmente excluir este registro?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation">
+                        <!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
+                        <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" actionListener="#{clienteBean.excluir}" process="@form" update="dlg:btnSim" />
+                        <!--caso seja não somente fecha o modal-->
+                        <p:commandButton id="btnNao" value="Não" onclick="confirmation.hide();" type="button"/>
+                    </p:confirmDialog>
+                </h:form>
+
+
+            </ui:define>
+
+            <ui:define name="rodape">
+                Cadastro de Participante
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

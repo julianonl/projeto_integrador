@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="index.xhtml">
+
+            <ui:define name="centro">
+
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome:"/>
+                        <h:inputText value="#{controleEstado.estado.nome}" size="20" />  
+                        <h:outputLabel value="Sigla:"/>
+                        <h:inputText value="#{controleEstado.estado.sigla}" size="20"/> 
+                        <h:commandButton action="#{controleEstado.salvar()}" value="OK"/>
+                    </h:panelGrid>
+                </h:form>
+
+                <h:form>
+                    <h:dataTable value="#{controleEstado.lista}" var="item">
+
+                        <h:column>
+                            #{item.id}
+                            #{item.nome}
+                            #{item.sigla}
+                        </h:column>
+                        <h:column>
+                            <h:commandButton action="#{controleEstado.acaoAlterar(item)}" value="editar"/>
+                            <h:commandButton action ="#{controleEstado.excluir(item.id)}" value="Excluir"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome:"/>
+                        <h:inputText value="#{controleCidade.cidade.nome}" size="20" /> 
+                        <h:outputLabel value="Estado:"/>
+
+                        <h:selectOneMenu id="estado"
+                                         value="#{controleCidade.cidade.estado}"
+                                         converter="conversorEntidade">
+                            <f:selectItems value="#{controleCidade.getEstado()}"/>
+                        </h:selectOneMenu>
+
+                        <h:commandButton action="#{controleCidade.salvar()}" value="OK"/>
+                        <h:commandButton action="#{controleCidade.altera()}" value="Editar"/>
+                        <h:inputHidden value="#{controleCidade.cidade.id}"/>
+                    </h:panelGrid>
+
+                </h:form>
+                <h:form id="meuForm">
+                    <p:messages autoUpdate="true" />
+                    <h:panelGrid columns="3">
+                        <p:outputLabel for="cpf" value="CPF"/>
+                        <p:inputMask id="cpf" mask="999.999.999-99" size="30"/>
+                        <p:message for="cpf" display="text" />
+
+                        <p:outputLabel for="serial" value="Serial"/>
+                        <p:inputMask id="serial" mask="aaaa9*-***-" size="30"/>
+                        <p:message for="serial" display="text" />
+
+                        <p:outputLabel for="telefone" value="Telefone"/>
+                        <p:inputMask id="telefone" mask="(99) 9999-9999" required="true" size="30"/>
+                        <p:message for="telefone" display="text" />
+
+
+                        <p:outputLabel for="estado" value="Estado"/>
+                        <p:inputMask id="estado" mask="aaaaaaaaaaaaaa" value="#{controleEstado.estado.nome}" required="true" size="30"/>
+                        <p:message for="estado" display="text"/>
+                    </h:panelGrid>
+                    <p:commandButton value="ok" update=":meuForm"/>
+
+                   
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <p:panelGrid>
+                    
+                          <h:outputText value="CidadeZ"></h:outputText>
+                    <p:panel>
+                        <p:autoComplete var="CidadeZ" value="#{controleCidade.cidade.nome}" itemLabel="#{controleCidade.cidade.nome}" converter="conversorEntidade" completeMethod="#{controleCidade.cidade.nome}" effect="fade"></p:autoComplete>
+                       
+                    </p:panel>
+
+
+
+                    <p:commandButton value="Gravar" action="#{controleCidade.salvar()}" update=":conteudo"></p:commandButton>
+                   
+
+
+                </p:panelGrid>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

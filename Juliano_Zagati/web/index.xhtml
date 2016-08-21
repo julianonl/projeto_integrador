@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sistema de eventos</title>
+    </h:head>
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <div align="center">
+            <p:layout style="min-width:1020px;max-width:1020px;min-height:600px"> 
+
+                <header>
+                    <b:navBar brand="Sistema de eventos academicos"  inverse="true" fixed="top">
+                        <b:navbarLinks>
+                            <b:navLink value="Meus Cursos" href="#"></b:navLink>
+                            <b:navLink value="Link" href="#"></b:navLink>
+                            <b:dropMenu value="Meu Perfil">
+                                <b:navLink value="Configuração" href="#"></b:navLink>
+                                <b:navLink value="Certificados" href="#"></b:navLink>
+                                <b:navLink></b:navLink>
+                                <b:navLink header="Cursos finalizados"></b:navLink>
+                            </b:dropMenu>
+                        </b:navbarLinks>
+                        <h:form styleClass="navbar-form navbar-right" id="login" onsubmit="document.getElementById('login').action = 'j_security_check';" prependId="false">
+                            <div class="form-group">`
+                                <b:inputText placeholder="Login" fieldSize="sm" id="j_username"/>
+                            </div>
+                            <div class="form-group">
+                                <b:inputText placeholder="Senha" fieldSize="sm" id="j_password"/>
+                            </div>
+                            <b:commandButton id="submit" value="Login" ajax="false"   look="success" iconAlign="right"/>
+                        </h:form>
+                    </b:navBar>
+                </header>
+
+                <section>
+
+                    <div align="center">
+                        <p:layoutUnit position="north" size="140">  
+                            <h:graphicImage value="../recurso/imagen/Logo.jpg"/>
+                        </p:layoutUnit>  
+                    </div>
+
+                    <div align="center">
+                        <p:layoutUnit position="west" size="220">  
+                            <ui:insert name="menu">
+                                <h:form>
+                                    <p:menu style="width: 200px">
+                                        <p:submenu label="Menu">
+                                            <p:menuitem value="Login" icon="ui-icon-key" url="login.xhtml"/>
+                                            <p:menuitem value="Cadastro" icon="ui-icon-contact" url="cadastros.xhtml"/>
+                                            <p:menuitem value="Eventos" icon="ui-icon-bookmark" url="eventos.xhtml"/>
+                                            <p:menuitem value="Home" icon="ui-icon-home" url="index.xhtml" />
+                                            <p:menuitem value="Listar" icon="ui-icon-home" url="listaParticipantes.xhtml" />
+                                        </p:submenu>
+                                    </p:menu>
+                                    <p:growl id="messages" showDetail="true"/>
+                                    <p:menuButton value="Options" style="width: 200px">
+                                        <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk"/>
+                                        <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                                        <p:menuitem value="Delete" actionListener="#{menuView.delete}" ajax="false" icon="ui-icon-close"/>
+                                        <p:separator/>
+                                        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>
+                                    </p:menuButton>
+
+                                </h:form>
+                            </ui:insert>
+                        </p:layoutUnit>
+                    </div>
+                </section>
+
+                <aside>
+                    <div align="center">
+                        <p:layoutUnit position="center">  
+                            <ui:insert name="centro">
+
+
+                                <!--                                <h:form id="login" onsubmit="document.getElementById('login').action = 'j_security_check';" prependId="false">
+                                                                    <h:panelGrid columns="2">
+                                                                        <p:outputLabel for="j_username" value="Username" />
+                                                                        <p:inputText id="j_username"  />            
+                                                                        <p:outputLabel for="j_password" value="Password" />
+                                                                        <p:password id="j_password" />
+                                                                        <p:commandButton id="submit" value="Login" ajax="false"/>
+                                                                    </h:panelGrid>
+                                                                </h:form>-->
+                            </ui:insert>
+                        </p:layoutUnit> 
+                    </div>
+                </aside>
+
+
+                <footer>
+                    <div align="center">
+                        <p:layoutUnit position="south" size="80"> 
+                            <ui:insert name="rodape">
+
+                                <h3>rodape</h3>
+                            </ui:insert>
+                        </p:layoutUnit>  
+                    </div>
+                </footer>
+
+            </p:layout> 
+        </div>
+    </h:body>
+</html>
+
